@@ -1,0 +1,60 @@
+
+  body{
+	background-color: black;
+  }
+  header{
+	display: flex;
+	justify-content: center;
+	font-size: large;
+
+  }
+  .first h1 {
+	background: url('./images/6963bbf342d87b3a2150bd8f59682b89.jpg');
+	-webkit-background-clip: text;
+	background-size: contain;
+	width: 100%;
+	color: transparent;
+	font-weight: 900;
+	margin-right: 0.5em;
+  }
+  .second h1{
+	background: url('./images/fire.webp');
+	-webkit-background-clip: text;
+	background-size: contain;
+	width: 100%;
+	color: transparent;
+	font-weight: 900;
+	margin-right: 0.5em;
+
+  }
+  .third h1{
+	background: url('./images/metal.avif');
+	-webkit-background-clip: text;
+	background-size: contain;
+	width: 100%;
+	color: transparent;
+	font-weight: 900;
+	
+  }
+  .life{
+	display: flex;
+	width:100%;
+	justify-content: space-between;
+	align-items: center;
+  }
+  .lifenos{
+	margin-right: 1rem;
+  }
+  .lifenos img{
+	width:2rem;
+	height:2rem;
+  }
+  .lifeDetails{
+	margin-left: 1rem;
+	color: white;
+	justify-content: flex-end;
+
+  }
+  
+  
+  
