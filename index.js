@@ -21,6 +21,31 @@ const comments=()=>{
     lifeDetails.innerHTML='last attack '+winner+' won ';
     
 }
+const stopButton = document.querySelector('.stop-button');
+const slotList = document.querySelector('.slot__list');
+
+let interval;
+
+function startSlot() {
+  interval = setInterval(() => {
+    const top = parseInt(slotList.style.top || '0', 10);
+    
+    slotList.style.top = `${top - 100}px`;
+    
+    if (top <= -200) {
+      slotList.style.top = '0px';
+    }
+  }, 100);
+}
+
+stopButton.addEventListener('click', () => {
+  clearInterval(interval);
+});
+
+startSlot();
+
+
+
 printLife();
 comments();
 
