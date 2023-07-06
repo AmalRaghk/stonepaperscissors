@@ -4,7 +4,7 @@ let computerchooser=Math.random();
 let userChoice=[];
 let winner='player';
 
-function printLife(){
+const printLife=()=>{
     const lifeNos=document.querySelector('.lifenos');
     for (let i=0;i<totallife;i++)
     {
@@ -29,10 +29,19 @@ const computerChoiceImages = [
   './images/papericon.webp',
   './images/scissorsicon.png'
 ];
-
+let choice='';
 function slot() {
   const slotElement = document.querySelector('.slot');
-  let i = 0;
+  let i=Math.random()*10;
+  if (i<=3){
+    i=0;
+  }
+  else if(i<=6){
+    i=1;
+  }
+  else{
+    i=2;
+  }
   intervalId = setInterval(() => {
     slotElement.innerHTML = `<img src="${computerChoiceImages[i]}">`;
     i = (i + 1) % computerChoiceImages.length;
@@ -44,9 +53,14 @@ function stop() {
   stopped = true;
 }
 
-document.querySelector('.stop-button').addEventListener('click', stop);
+//document.querySelector('.stop-button').addEventListener('click', stop);
+const winners=()=>{
 
+  
+
+}
 printLife();
+totallife=2;
 slot();
 comments();
 
