@@ -19,7 +19,10 @@ const choiceImages = [
   './images/papericon.webp',
   './images/scissorsicon.png'
 ];
-const winnerImages =[]
+const winnerImages =[
+  './images/computer.webp',
+  './images/player.webp'
+]
 function decide(i){
   if(i<=30){
     return 0;
@@ -30,6 +33,9 @@ function decide(i){
   else{
     return 2;
   }
+}
+function winnerImageShower(no){
+  winnerimage.innerHTML=`<img src=${winnerImages[no]}>`
 }
 
 const lifeimagefunction=()=>{
@@ -84,6 +90,7 @@ const findWinner=(playerMove)=>{
     }
   }
 console.log(roundWinner)
+winnerImageShower(roundWinner=='player'?1:0);
 }
 
 userChoices.forEach((choice)=>{

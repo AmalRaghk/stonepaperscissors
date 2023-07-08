@@ -100,7 +100,11 @@
 	width:10vmin;
 	height: 10vmin;
 	border: solid;
-	background-color: white;
+
+	
+}
+.winnerimage img{
+	width:10vmin;
 }
 .winnername{
 	width: 100%;
