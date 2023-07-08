@@ -5,7 +5,7 @@ const slot = document.querySelector(".slot");
 const lifeDetails = document.querySelector(".lifeDetails");
 const lifenos = document.querySelector(".lifenos");
 const computer = document.querySelector(".computer");
-
+const winnername=document.querySelector('.winnername')
 
 let life = 3;
 let userScore = 0;
@@ -21,7 +21,8 @@ const choiceImages = [
 ];
 const winnerImages =[
   './images/computer.webp',
-  './images/player.webp'
+  './images/player.webp',
+  './images/tie.webp'
 ]
 function decide(i){
   if(i<=30){
@@ -34,8 +35,21 @@ function decide(i){
     return 2;
   }
 }
-function winnerImageShower(no){
-  winnerimage.innerHTML=`<img src=${winnerImages[no]}>`
+function winnerImageShower(roundWinner){
+  if (roundWinner=='computer'){
+    winnerimage.innerHTML=`<img src=${winnerImages[0]}>`;
+    winnername.innerHTML=`In this round ${roundWinner} won`;
+  
+  }
+  else if(roundWinner==='player'){
+    winnerimage.innerHTML=`<img src=${winnerImages[1]}>`;
+    winnername.innerHTML=`In this round ${roundWinner} won`;
+  }
+  else{
+  
+  winnerimage.innerHTML=`<img src=${winnerImages[2]}>`;
+  winnername.innerHTML=`oops.... It is a tie`;
+  }
 }
 
 const lifeimagefunction=()=>{
@@ -90,7 +104,7 @@ const findWinner=(playerMove)=>{
     }
   }
 console.log(roundWinner)
-winnerImageShower(roundWinner=='player'?1:0);
+winnerImageShower(roundWinner);
 }
 
 userChoices.forEach((choice)=>{
