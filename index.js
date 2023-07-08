@@ -10,6 +10,8 @@ const computer = document.querySelector(".computer");
 let life = 3;
 let userScore = 0;
 let computerScore = 0;
+let roundWinner='';
+let champion='';
 let userChoices=[0,1,2];//o for stone 1 for paper 2 for scissors
 let stop=false;
 const choiceImages = [
@@ -29,6 +31,7 @@ function decide(i){
     return 2;
   }
 }
+
 const lifeimagefunction=()=>{
 let lifeimages=``;
 for(let i=0;i<life;i++){
@@ -44,7 +47,44 @@ const slotfunction=()=>{
   }
 }
 const iterval=setInterval(slotfunction,1000);
+const findWinner=(playerMove)=>{
+  let computersMove=decide(Math.random()*100);
+  stop=true;
+  slot.innerHTML=`<img src=${choiceImages[computersMove]}>`;
+  console.log(playerMove,computersMove);
+  if (playerMove==computersMove)
+  {
+    roundWinner='tie';
+  }
+  else if(playerMove==0){
+    if(computersMove==1){
+      roundWinner='computer';
 
+    }
+    else{
+      roundWinner='player';
+    }
+  }
+  else if(playerMove==1){
+    if(computersMove==2){
+      roundWinner='computer';
+
+    }
+    else{
+      roundWinner='player';
+    }
+  }
+  else{
+    if(computersMove==0){
+      roundWinner='computer';
+
+    }
+    else{
+      roundWinner='player';
+    }
+  }
+console.log(roundWinner)
+}
 
 userChoices.forEach((choice)=>{
   const option=document.createElement('div');
@@ -53,8 +93,6 @@ userChoices.forEach((choice)=>{
   img.src=choiceImages[choice];
   option.appendChild(img);
   options.appendChild(option);
-  img.onclick=()=>{life=2;
-  console.log(life)
-lifeimagefunction();}
+  img.onclick=()=>{findWinner(option.id);}
 }
 )
