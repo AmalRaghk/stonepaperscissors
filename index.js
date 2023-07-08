@@ -1,114 +1,50 @@
-let totallife=3;
-let computerChoices=['stone','paper','scissors'];
-let computerchooser=Math.random();
-let userChoice=[];
-let winner='player';
-const lifeNos=document.querySelector('.lifenos');
-const decide=(i)=>{
-  if (i<=3){
-    i=0;
-  }
-  else if(i<=6){
-    i=1;
-  }
-  else{
-    i=2;
-  }
-  return i
-  
-}
+const options = document.querySelector(".options");
+const winner = document.querySelector(".winnername");
+const winnerimage = document.querySelector(".winnerimage");
+const slot = document.querySelector(".slot");
+const lifeDetails = document.querySelector(".lifeDetails");
+const lifenos = document.querySelector(".lifenos");
+const computer = document.querySelector(".computer");
 
-const printLife=()=>{
-  lifeNos.innerHTML = '';
-  for (let i = 0; i < totallife; i++) {
-    const lifeImage = document.createElement('img');
-    lifeImage.setAttribute('class', 'lifeImage');
-    lifeImage.src = './images/heart.png';
-    lifeNos.appendChild(lifeImage);
-  }
-}
 
-const comments=()=>{
-    const lifeDetails=document.querySelector('.lifeDetails');
-    lifeDetails.innerHTML='last attack '+winner+' won ';
-    
-}
-let intervalId;
-let stopped = false;
+let life = 3;
+let userScore = 0;
+let computerScore = 0;
+let userChoices=[0,1,2];//o for stone 1 for paper 2 for scissors
+let stop=false;
 
-const computerChoiceImages = [
+const choiceImages = [
   './images/Dirt.webp',
   './images/papericon.webp',
   './images/scissorsicon.png'
 ];
-let choice='';
-function slot() {
-  const slotElement = document.querySelector('.slot');
-  let i=Math.random()*10;
-  i=decide(i);
-  const img=document.createElement('img');
-  slotElement.appendChild(img);
-  intervalId = setInterval(() => {
-    const img=document.createElement('img');
-    img.src=computerChoiceImages[i];
-    img.setAttribute('id',i);
-    slotElement.replaceChild(img, slotElement.firstChild);
-    i = (i + 1) % computerChoiceImages.length;
-  }, 1000);
-}
-
-function stop() {
-  clearInterval(intervalId);
-  stopped = true;
-}
-
-//document.querySelector('.stop-button').addEventListener('click', stop);
-const winners = (id) => {
-  const slotElement = document.querySelector('.slot');
-  const computersmove = decide(Math.random())
-  const img=document.createElement('img');
-  img.src=computerChoiceImages[computersmove];
-  slotElement.replaceChild(img, slotElement.firstChild);
-  console.log(computersmove,id);
-
-  if (id == computersmove) {
-    winner = 'Tie';
-  } else if (
-    (id == 0 && computersmove == 2) ||
-    (id == 1 && computersmove == 0) ||
-    (id == 2 && computersmove == 1)
-  ) {
-    winner = 'player';
-    totallife--;
-  } else {
-    winner = 'computer';
-    totallife--;
+const winnerImages =[]
+function decide(i){
+  if(i<=30){
+    return 0;
   }
-  comments();
-  printLife();
-};
-
-const usersChoice=()=>{
-  const options=document.querySelector('.options');
-  for(let i=0;i<3;i++){
-    const img=document.createElement('img');
-    img.setAttribute('id',i);
-    const choice=document.createElement('div');
-    choice.setAttribute('class','choice'+i);
-    img.src=computerChoiceImages[i];
-    choice.appendChild(img)
-    options.appendChild(choice)
-    img.onclick=()=>{
-      stop();
-      winners(img.id)
-    }
+  else if(i<=60){
+    return 1;
   }
-
+  else{
+    return 2;
+  }
 }
-printLife();
-slot();
-comments();
-usersChoice();
+const slotfunction=()=>{
+  if(!stop){
+    let random=decide(Math.random()*100);
+    slot.innerHTML=`<img src=${choiceImages[random]}>`;
+  }
+}
+const iterval=setInterval(slotfunction,1000);
 
 
-
+userChoices.forEach((choice)=>{
+  const option=document.createElement('div');
+  option.id=choice;
+  const img=document.createElement('img');
+  img.src=choiceImages[choice];
+  option.appendChild(img);
+  options.appendChild(option);
+}
+)
