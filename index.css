@@ -72,6 +72,15 @@
 	width: 100%;
 	
   }
+  .computerChoice {
+	width: 10vmin;
+	height:10vmin;
+	border: solid;
+	margin: auto;
+}
+.computerChoice img{
+	width:10vmin;
+}
   .computer img{
 	width: 10vmin;
   }

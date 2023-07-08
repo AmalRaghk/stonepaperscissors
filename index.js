@@ -14,7 +14,7 @@ let computerScore = 0;
 let roundWinner='';
 let champion='';
 let userChoices=[0,1,2];//o for stone 1 for paper 2 for scissors
-let stop=false;
+winnerimage.innerHTML=`<img src='./images/vs.webp'>`
 const choiceImages = [
   './images/Dirt.webp',
   './images/papericon.webp',
@@ -62,17 +62,16 @@ lifenos.innerHTML=lifeimages
 }
 lifeimagefunction();
 const slotfunction=()=>{
-  if(!stop){
     let random=decide(Math.random()*100);
     slot.innerHTML=`<img src=${choiceImages[random]}>`;
   }
-}
 const iterval=setInterval(slotfunction,1000);
 const findWinner=(playerMove)=>{
   
   let computersMove=decide(Math.random()*100);
-  stop=true;
-  slot.innerHTML=`<img src=${choiceImages[computersMove]}>`;
+
+  const computerChoice=document.querySelector('.computerChoice');
+computerChoice.innerHTML=`<img src=${choiceImages[computersMove]}>`;
   console.log(playerMove,computersMove);
   if (playerMove==computersMove)
   {
@@ -118,6 +117,7 @@ userChoices.forEach((choice)=>{
   options.appendChild(option);
   img.onclick=()=>{findWinner(option.id);
   const playerchoice=document.querySelector('.playerchoice');
-  playerchoice.innerHTML=`<img src=${choiceImages[option.id]}>`}
+  playerchoice.innerHTML=`<img src=${choiceImages[option.id]}>`
+  }
 }
 )
