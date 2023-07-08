@@ -12,7 +12,6 @@ let userScore = 0;
 let computerScore = 0;
 let userChoices=[0,1,2];//o for stone 1 for paper 2 for scissors
 let stop=false;
-
 const choiceImages = [
   './images/Dirt.webp',
   './images/papericon.webp',
@@ -30,6 +29,14 @@ function decide(i){
     return 2;
   }
 }
+const lifeimagefunction=()=>{
+let lifeimages=``;
+for(let i=0;i<life;i++){
+  lifeimages+=`<img src='./images/heart.png'>`;
+}
+lifenos.innerHTML=lifeimages
+}
+lifeimagefunction();
 const slotfunction=()=>{
   if(!stop){
     let random=decide(Math.random()*100);
@@ -46,5 +53,8 @@ userChoices.forEach((choice)=>{
   img.src=choiceImages[choice];
   option.appendChild(img);
   options.appendChild(option);
+  img.onclick=()=>{life=2;
+  console.log(life)
+lifeimagefunction();}
 }
 )
