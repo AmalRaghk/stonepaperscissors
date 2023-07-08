@@ -5,7 +5,8 @@ const slot = document.querySelector(".slot");
 const lifeDetails = document.querySelector(".lifeDetails");
 const lifenos = document.querySelector(".lifenos");
 const computer = document.querySelector(".computer");
-const winnername=document.querySelector('.winnername')
+const winnername=document.querySelector('.winnername');
+
 
 let life = 3;
 let userScore = 0;
@@ -68,6 +69,7 @@ const slotfunction=()=>{
 }
 const iterval=setInterval(slotfunction,1000);
 const findWinner=(playerMove)=>{
+  
   let computersMove=decide(Math.random()*100);
   stop=true;
   slot.innerHTML=`<img src=${choiceImages[computersMove]}>`;
@@ -114,6 +116,8 @@ userChoices.forEach((choice)=>{
   img.src=choiceImages[choice];
   option.appendChild(img);
   options.appendChild(option);
-  img.onclick=()=>{findWinner(option.id);}
+  img.onclick=()=>{findWinner(option.id);
+  const playerchoice=document.querySelector('.playerchoice');
+  playerchoice.innerHTML=`<img src=${choiceImages[option.id]}>`}
 }
 )

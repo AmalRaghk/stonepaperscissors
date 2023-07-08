@@ -130,6 +130,15 @@
 	align-items: center;
 	justify-content: center;
 }
+.playerchoice {
+	width: 10vmin;
+	height:10vmin;
+	border: solid;
+	margin: auto;
+}
+.playerchoice img{
+	width:10vmin;
+}
 .options img{
 
 	border: solid;
