@@ -6,9 +6,12 @@ const lifeDetails = document.querySelector(".lifeDetails");
 const lifenos = document.querySelector(".lifenos");
 const computer = document.querySelector(".computer");
 const winnername = document.querySelector('.winnername');
+const restart=document.querySelector('.reset');
+const computerChoice = document.querySelector('.computerChoice');
 
 
-let life = 3;
+let computerLife = 3;
+let playerLife=3;
 let userScore = 0;
 let computerScore = 0;
 let roundWinner = '';
@@ -55,7 +58,7 @@ function winnerImageShower(roundWinner) {
 
 const lifeimagefunction = () => {
   let lifeimages = ``;
-  for (let i = 0; i < life; i++) {
+  for (let i = 0; i < playerLife; i++) {
     lifeimages += `<img src='./images/heart.webp'>`;
   }
   lifenos.innerHTML = lifeimages
@@ -67,10 +70,18 @@ const slotfunction = () => {
 }
 const iterval = setInterval(slotfunction, 1000);
 const findWinner = (playerMove) => {
+  if (computerLife===0){
+    champion='player';
+  }
+  if (playerLife===0){
+    champion='computer'
+  }
 
   let computersMove = decide(Math.random() * 100);
+  const playerchoice = document.querySelector('.playerchoice');
+  playerchoice.innerHTML = `<img src=${choiceImages[playerMove]}>`
 
-  const computerChoice = document.querySelector('.computerChoice');
+ 
   computerChoice.innerHTML = `<img src=${choiceImages[computersMove]}>`;
   console.log(playerMove, computersMove);
   if (playerMove == computersMove) {
@@ -79,32 +90,39 @@ const findWinner = (playerMove) => {
   else if (playerMove == 0) {
     if (computersMove == 1) {
       roundWinner = 'computer';
+      playerLife--;
 
     }
     else {
       roundWinner = 'player';
+      computerLife--;
     }
   }
   else if (playerMove == 1) {
     if (computersMove == 2) {
       roundWinner = 'computer';
+      playerLife--;
 
     }
     else {
       roundWinner = 'player';
+      computerLife--;
     }
   }
   else {
     if (computersMove == 0) {
       roundWinner = 'computer';
+      playerLife--;
 
     }
     else {
       roundWinner = 'player';
+      computerLife--;
     }
   }
-  console.log(roundWinner)
+  console.log(roundWinner,playerLife)
   winnerImageShower(roundWinner);
+  lifeimagefunction();
 }
 
 userChoices.forEach((choice) => {
@@ -116,8 +134,18 @@ userChoices.forEach((choice) => {
   options.appendChild(option);
   img.onclick = () => {
     findWinner(option.id);
-    const playerchoice = document.querySelector('.playerchoice');
-    playerchoice.innerHTML = `<img src=${choiceImages[option.id]}>`
+    ;
   }
 }
 )
+function reset(){
+  computerChoice.innerHTML=``;
+  computerLife=3;
+  playerLife=3;
+  winnerimage.innerHTML = `<img src='./images/vs.webp'>`;
+  lifeimagefunction();
+  console.log(computer);
+  
+
+}
+restart.onclick=reset;
