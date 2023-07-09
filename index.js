@@ -8,8 +8,7 @@ const computer = document.querySelector(".computer");
 const winnername = document.querySelector('.winnername');
 const restart=document.querySelector('.reset');
 const computerChoice = document.querySelector('.computerChoice');
-
-
+const playerchoice=document.querySelector('.playerchoice');
 let computerLife = 3;
 let playerLife=3;
 let userScore = 0;
@@ -17,7 +16,9 @@ let computerScore = 0;
 let roundWinner = '';
 let champion = '';
 let userChoices = [0, 1, 2];//o for stone 1 for paper 2 for scissors
-winnerimage.innerHTML = `<img src='./images/vs.webp'>`
+winnerimage.innerHTML = `<img src='./images/vs.webp'>`;
+winnername.innerHTML='let the game begin..';
+
 const choiceImages = [
   './images/Dirt.webp',
   './images/papericon.webp',
@@ -55,7 +56,9 @@ function winnerImageShower(roundWinner) {
     winnername.innerHTML = `oops.... It is a tie`;
   }
 }
-
+function championEffect(){
+  document.body.innerHTML = '';
+}
 const lifeimagefunction = () => {
   let lifeimages = ``;
   for (let i = 0; i < playerLife; i++) {
@@ -72,17 +75,16 @@ const iterval = setInterval(slotfunction, 1000);
 const findWinner = (playerMove) => {
   if (computerLife===0){
     champion='player';
+    championEffect();
   }
   if (playerLife===0){
-    champion='computer'
+    champion='computer';
+    championEffect();
   }
 
   let computersMove = decide(Math.random() * 100);
-  const playerchoice = document.querySelector('.playerchoice');
   playerchoice.innerHTML = `<img src=${choiceImages[playerMove]}>`
-
- 
-  computerChoice.innerHTML = `<img src=${choiceImages[computersMove]}>`;
+ computerChoice.innerHTML = `<img src=${choiceImages[computersMove]}>`;
   console.log(playerMove, computersMove);
   if (playerMove == computersMove) {
     roundWinner = 'tie';
@@ -140,9 +142,11 @@ userChoices.forEach((choice) => {
 )
 function reset(){
   computerChoice.innerHTML=``;
+  playerchoice.innerHTML=``;
   computerLife=3;
   playerLife=3;
   winnerimage.innerHTML = `<img src='./images/vs.webp'>`;
+  winnername.innerHTML='let the game begin..';
   lifeimagefunction();
   console.log(computer);
   
