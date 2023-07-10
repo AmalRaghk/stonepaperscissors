@@ -203,10 +203,14 @@
 	height: 10rem;
 }
 .reset{
-	margin-top: 2.5rem;
+	margin-top: 2rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	font-family: 'Press Start 2P', cursive;
+	padding: 1.5rem;
+	border-radius: 2rem;
+	font-size: 2rem;
 }
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
