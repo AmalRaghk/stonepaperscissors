@@ -18,7 +18,10 @@ let champion = '';
 let userChoices = [0, 1, 2];//o for stone 1 for paper 2 for scissors
 winnerimage.innerHTML = `<img src='./images/vs.webp'>`;
 winnername.innerHTML='let the game begin..';
-
+const colors=[
+  '#7c4dff',
+  '#0091ea','#ff9100','#ff1744'
+]
 const choiceImages = [
   './images/Dirt.webp',
   './images/papericon.webp',
@@ -56,20 +59,6 @@ function winnerImageShower(roundWinner) {
     winnername.innerHTML = `oops.... It is a tie`;
   }
 }
-function championEffect(){
-  const overlay = document.createElement('div');
-  overlay.setAttribute('class','disChamp')
-  overlay.style.position = 'fixed';
-  overlay.style.top = 0;
-  overlay.style.left = 0;
-  overlay.style.width = '100%';
-  overlay.style.height = '100%';
-  overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-  overlay.innerHTML=champion;
-  document.body.appendChild(overlay);
-  
-
-}
 const lifeimagefunction = () => {
   let lifeimages = ``;
   for (let i = 0; i < playerLife; i++) {
@@ -77,6 +66,50 @@ const lifeimagefunction = () => {
   }
   lifenos.innerHTML = lifeimages
 }
+function reset(){
+  computerChoice.innerHTML=``;
+  playerchoice.innerHTML=``;
+  computerLife=3;
+  playerLife=3;
+  winnerimage.innerHTML = `<img src='./images/vs.webp'>`;
+  winnername.innerHTML='let the game begin..';
+  lifeimagefunction();
+  console.log(computer);
+  
+
+}
+function championEffect(){
+  const overlay = document.createElement('div');
+  const finaldisplay=document.createElement('div');
+  const champcontent =document.createElement('div');
+  const buttoncontent=document.createElement('div');
+  const button =document.createElement('button');
+  overlay.setAttribute('class','disChamp');
+  champcontent.setAttribute('class','champcontent');
+  finaldisplay.setAttribute('class','finaldisplay');
+  buttoncontent.setAttribute('class','buttoncontent');
+  button.onclick=()=>{
+    reset();
+    document.body.removeChild(overlay);
+
+  }
+  button.innerHTML='Restart';
+  for(let i=0;i<4;i++){
+    const championname=document.createElement('div'); 
+  championname.innerHTML=champion+" won ";
+  championname.setAttribute('class','championname');
+  championname.style.color=colors[i];
+  champcontent.appendChild(championname);
+  }  
+  buttoncontent.appendChild(button);
+  finaldisplay.appendChild(buttoncontent)
+  finaldisplay.appendChild(champcontent);
+  overlay.appendChild(finaldisplay);
+  document.body.appendChild(overlay);
+  
+
+}
+
 lifeimagefunction();
 const slotfunction = () => {
   let random = decide(Math.random() * 100);
@@ -151,16 +184,5 @@ userChoices.forEach((choice) => {
   }
 }
 )
-function reset(){
-  computerChoice.innerHTML=``;
-  playerchoice.innerHTML=``;
-  computerLife=3;
-  playerLife=3;
-  winnerimage.innerHTML = `<img src='./images/vs.webp'>`;
-  winnername.innerHTML='let the game begin..';
-  lifeimagefunction();
-  console.log(computer);
-  
 
-}
 restart.onclick=reset;
