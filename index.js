@@ -6,21 +6,21 @@ const lifeDetails = document.querySelector(".lifeDetails");
 const lifenos = document.querySelector(".lifenos");
 const computer = document.querySelector(".computer");
 const winnername = document.querySelector('.winnername');
-const restart=document.querySelector('.reset');
+const restart = document.querySelector('.reset');
 const computerChoice = document.querySelector('.computerChoice');
-const playerchoice=document.querySelector('.playerchoice');
+const playerchoice = document.querySelector('.playerchoice');
 let computerLife = 3;
-let playerLife=3;
+let playerLife = 3;
 let userScore = 0;
 let computerScore = 0;
 let roundWinner = '';
 let champion = '';
 let userChoices = [0, 1, 2];//o for stone 1 for paper 2 for scissors
 winnerimage.innerHTML = `<img src='./images/vs.webp'>`;
-winnername.innerHTML='let the game begin..';
-const colors=[
+winnername.innerHTML = 'let the game begin..';
+const colors = [
   '#7c4dff',
-  '#0091ea','#ff9100','#ff1744'
+  '#0091ea', '#ff9100', '#ff1744'
 ]
 const choiceImages = [
   './images/Dirt.webp',
@@ -66,47 +66,48 @@ const lifeimagefunction = () => {
   }
   lifenos.innerHTML = lifeimages
 }
-function reset(){
-  computerChoice.innerHTML=``;
-  playerchoice.innerHTML=``;
-  computerLife=3;
-  playerLife=3;
+function reset() {
+  computerChoice.innerHTML = ``;
+  playerchoice.innerHTML = ``;
+  computerLife = 3;
+  playerLife = 3;
   winnerimage.innerHTML = `<img src='./images/vs.webp'>`;
-  winnername.innerHTML='let the game begin..';
+  winnername.innerHTML = 'let the game begin..';
   lifeimagefunction();
   console.log(computer);
-  
+
 
 }
-function championEffect(){
+function championEffect() {
   const overlay = document.createElement('div');
-  const finaldisplay=document.createElement('div');
-  const champcontent =document.createElement('div');
-  const buttoncontent=document.createElement('div');
-  const button =document.createElement('button');
-  overlay.setAttribute('class','disChamp');
-  champcontent.setAttribute('class','champcontent');
-  finaldisplay.setAttribute('class','finaldisplay');
-  buttoncontent.setAttribute('class','buttoncontent');
-  button.onclick=()=>{
+  const finaldisplay = document.createElement('div');
+  const champcontent = document.createElement('div');
+  const buttoncontent = document.createElement('div');
+  const button = document.createElement('button');
+  overlay.setAttribute('class', 'disChamp');
+  champcontent.setAttribute('class', 'champcontent');
+  finaldisplay.setAttribute('class', 'finaldisplay');
+  buttoncontent.setAttribute('class', 'buttoncontent');
+  button.onclick = () => {
     reset();
     document.body.removeChild(overlay);
 
   }
-  button.innerHTML='Restart';
-  for(let i=0;i<4;i++){
-    const championname=document.createElement('div'); 
-  championname.innerHTML=champion+" won ";
-  championname.setAttribute('class','championname');
-  championname.style.color=colors[i];
-  champcontent.appendChild(championname);
-  }  
+  button.innerHTML = 'Restart';
+  for (let i = 0; i < 4; i++) {
+    const championname = document.createElement('div');
+    let string=champion=='player'?"won":"lost"
+    championname.innerHTML = `<p>You ${string} </p>`;
+    championname.setAttribute('class', 'championname');
+    championname.style.color = colors[i];
+    champcontent.appendChild(championname);
+  }
   buttoncontent.appendChild(button);
   finaldisplay.appendChild(buttoncontent)
   finaldisplay.appendChild(champcontent);
   overlay.appendChild(finaldisplay);
   document.body.appendChild(overlay);
-  
+
 
 }
 
@@ -117,18 +118,18 @@ const slotfunction = () => {
 }
 const iterval = setInterval(slotfunction, 1000);
 const findWinner = (playerMove) => {
-  if (computerLife===0){
-    champion='player';
+  if (computerLife === 0) {
+    champion = 'player';
     championEffect();
   }
-  if (playerLife===0){
-    champion='computer';
+  if (playerLife === 0) {
+    champion = 'computer';
     championEffect();
   }
 
   let computersMove = decide(Math.random() * 100);
   playerchoice.innerHTML = `<img src=${choiceImages[playerMove]}>`
- computerChoice.innerHTML = `<img src=${choiceImages[computersMove]}>`;
+  computerChoice.innerHTML = `<img src=${choiceImages[computersMove]}>`;
   console.log(playerMove, computersMove);
   if (playerMove == computersMove) {
     roundWinner = 'tie';
@@ -166,7 +167,7 @@ const findWinner = (playerMove) => {
       computerLife--;
     }
   }
-  console.log(roundWinner,playerLife)
+  console.log(roundWinner, playerLife)
   winnerImageShower(roundWinner);
   lifeimagefunction();
 }
@@ -185,4 +186,4 @@ userChoices.forEach((choice) => {
 }
 )
 
-restart.onclick=reset;
+restart.onclick = reset;
