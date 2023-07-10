@@ -49,7 +49,7 @@
 	align-items: center;
 	justify-content: center;
 	overflow: hidden;
-	font-size: 2.5rrem;
+	
 
   }
   
@@ -58,6 +58,7 @@
 	display: inline-block;
 	animation: move 10s infinite linear;
 	color: white;
+	font-size: 2.5rem;
 	
   }
   
@@ -201,11 +202,36 @@
 	width:10rem;
 	height: 10rem;
 }
-@media(max-width:400px){
-	html{
-		font-size: 1vmin;
-	}
+.reset{
+	margin-top: 2.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+	html{font-size: 4px;}
+  }
+  
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+	html{font-size: 4px;}
+  }
+  
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+	html{font-size: 4.5px;}
+  } 
+  
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+	html{font-size: 4px;}
+  } 
+  
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+	html{font-size: 5px;}
+  }
 
   
   
