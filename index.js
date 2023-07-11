@@ -170,6 +170,14 @@ const findWinner = (playerMove) => {
   console.log(roundWinner, playerLife)
   winnerImageShower(roundWinner);
   lifeimagefunction();
+   if (computerLife === 0) {
+    champion = 'player';
+    championEffect();
+  }
+  if (playerLife === 0) {
+    champion = 'computer';
+    championEffect();
+  }
 }
 
 userChoices.forEach((choice) => {
